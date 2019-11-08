@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/patient', function () {
+
+    return view('pages.doctor-dashboard');
+});

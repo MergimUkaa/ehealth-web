@@ -11,10 +11,10 @@
 @section('content')
     <h1>Hello Teuta</h1>
     {{--all the design content of dashboard goes here--}}
-    @endsection
+@endsection
 
 
 @section('page-scripts')
     {{--importing javascript files regarding to this page--}}
     {{--<script src="{{asset('custom-js/file.js')}}"></script>--}}
-    @endsection
+@endsection
