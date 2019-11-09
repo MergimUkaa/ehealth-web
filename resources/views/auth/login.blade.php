@@ -6,10 +6,16 @@
             <div class="row">
                 <div class="col-5">
                     <div class="form-holder">
-                        <div class="title-holder mb-2">
-                            {{ __('Login') }}
+                        <div class="title-holder">
                             <img src="{{ asset('images/logos/company-logo') }}" alt="Logo" width="40">
+                            <span>We are
+                                <strong>
+                                    <span>e</span>
+                                    HEALTH
+                                </strong>
+                            </span>
                         </div>
+                        <p class="subtitle">Please login to you account</p>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group">

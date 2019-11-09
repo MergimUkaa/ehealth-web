@@ -1,15 +1,18 @@
 
 :root {
-    --pink: "#ea5dbd";
-    --orange: "#ffa30a";
-    --green: "#8bdc63";
-    --blue: "#38b5e6";
-    --mainFont: 'Titillium Web', sans-serif;
+    --pink: #ea5dbd;
+    --orange: #ffa30a;
+    --green: #8bdc63;
+    --blue: #38b5e6;
+    --lightgrey: #d3d3d3bf;
+    --mainFont: 'Fira Sans', sans-serif;
+    --map-red-marker-color: #D98880;
+    --map-yellow-marker-color: #F1C40F;
 }
 
 body, html {
-    /*font-family: var(--mainFont);*/
     height: 100%;
+    font-family: var(--mainFont);
 }
 
 main {
@@ -17,8 +20,8 @@ main {
 }
 
 .btn-element {
-    background: rgb(56,181,230);
-    background: linear-gradient(90deg, rgba(56,181,230,1) 0%, rgba(234,93,189,1) 34%, rgba(255,163,10,1) 100%);
+    background: rgb(56, 181, 230);
+    background: linear-gradient(90deg, rgba(255, 163, 10, 1) 20%, rgba(234, 93, 189, 1) 100%);
     padding: 4px 18px;
     font-size: 14px;
     color: #fff;
@@ -30,10 +33,8 @@ main {
 }
 
 .btn-element:hover {
-    background: rgb(139,220,99);
-    background: linear-gradient(90deg, rgba(139,220,99,1) 0%, #38b5e6 34%, rgba(255,163,10,1) 100%);
-    /*background-color: #ffa30a;*/
-    /*border-color: #ffa30a;*/
+    background: rgb(139, 220, 99);
+    background: linear-gradient(90deg, rgba(139, 220, 99, 1) 0%, #38b5e6 34%, rgba(255, 163, 10, 1) 100%);
     color: #fff;
 }
 
@@ -43,7 +44,7 @@ img {
 }
 
 .form-control {
-    border: 2px solid #d3d3d3bf;
+    border: 2px solid var(--lightgrey);
     background-color: whitesmoke;
     height: 44px;
     border-radius: 10px;
@@ -51,7 +52,7 @@ img {
 
 .form-control:focus {
     outline: none;
-    border-color: #8bdc63;
+    border-color: var(--green);
     box-shadow: none;
 }
 
@@ -62,6 +63,10 @@ img {
     color: gray;
     font-size: 12px;
     padding-left: 15px;
+}
+
+.content-padding {
+    padding: 40px 0;
 }
 
 /*
@@ -86,12 +91,278 @@ Login Page Style
 .login-page-wrapper .title-holder {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    font-size: 34px;
+    font-size: 26px;
     color: grey;
+    font-family: var(--mainFont);
+    flex-direction: column;
+    margin-bottom: 60px;
 }
 
 .login-page-wrapper .form-holder {
     width: 400px;
-    padding-top: 60px;
+}
+
+.login-page-wrapper .subtitle {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: grey;
+    padding-left: 15px;
+}
+
+/*
+
+End of Login Page Style
+*/
+
+/*
+   Doctors Dashboard
+
+*/
+
+.title {
+    font-size: 30px;
+    margin-bottom: 34px;
+}
+
+.boxed-icon {
+    color: grey;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.boxed-icon:before {
+    content: "";
+    display: inherit;
+    height: 30px;
+    width: 30px;
+    background-size: 18px;
+    vertical-align: middle;
+    margin-right: 6px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+.boxed-icon.location-icon:before {
+    background-image: url(../images/icons/location-green.svg);
+}
+
+.boxed-icon.hospital-icon:before {
+    background-image: url(../images/icons/hospital-buildings.svg);
+}
+
+.boxed-icon.department-icon:before {
+    background-image: url(../images/icons/medical-kit.svg);
+}
+
+.navbar {
+    border: 2px solid var(--lightgrey);
+}
+
+/*
+
+Map Style
+*/
+#map {
+    height: 600px;
+    border: 2px solid var(--lightgrey);
+}
+
+.map-popup {
+    display: flex;
+}
+
+.map-popup .status:before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    margin-right: 4px;
+}
+
+.map-popup.critical-high .status {
+    color: #F44336;
+}
+
+.map-popup.critical-high .status:before {
+    background-color: #F44336;
+}
+
+.map-popup.critical-low .status {
+    color: #FFA726;
+}
+
+.map-popup.critical-low .status:before {
+    background-color: #FFA726;
+}
+
+.map-popup.low .status {
+    color: #FF7043;
+}
+
+.map-popup.low .status:before {
+    background-color: #FF7043;
+}
+
+
+.map-popup.high .status {
+    color: #FFA726;
+}
+
+.map-popup.high .status:before {
+    background-color: #FFA726;
+}
+
+
+.map-popup.normal .status {
+    color: #66BB6A;
+}
+
+.map-popup.normal .status:before {
+    background-color: #66BB6A;
+}
+
+.map-popup .user-image {
+    width: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    height: 50px;
+    border-radius: 100%;
+    padding: 2px;
+    background-color: #d3d3d3ad;
+}
+
+.map-popup.critical-high .user-image {
+    background-color: #F44336;
+}
+
+.map-popup.critical-low .user-image {
+    background-color: #FFA726;
+}
+
+.map-popup.low .user-image {
+    background-color: #FF7043;
+}
+
+.map-popup.high .user-image {
+    background-color: #FFA726;
+}
+
+.map-popup.normal .user-image {
+    background-color: #66BB6A;
+}
+
+.map-popup .user-image img {
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.map-popup h4 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+body .leaflet-popup-content p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 13px;
+    color: grey;
+}
+
+body .leaflet-popup-content {
+    margin: 18px 20px 14px 20px;
+    padding-bottom: 50px;
+    position: relative;
+    padding-right: 14px;
+}
+
+.map-popup .btn-element {
+    color: #fff;
+    line-height: 22px;
+    height: 30px;
+    font-size: 12px;
+    margin-top: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-transform: capitalize;
+}
+
+.map-popup .location:before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-size: 14px;
+    margin-right: 2px;
+    margin-left: -2px;
+    position: relative;
+    top: 2px;
+    background-image: url("../images/icons/location-grey.svg");
+}
+
+.map-popup .info {
+    padding-left: 14px;
+}
+
+body .leaflet-container a.leaflet-popup-close-button {
+    top: -6px;
+    right: -6px;
+    border: none;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    font: 20px/14px Tahoma, Verdana, sans-serif;
+    background-color: #fff;
+    padding: 0;
+    line-height: 20px;
+    border-radius: 100%;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+}
+
+/*
+
+Leaflet Js
+*/
+
+.leaflet-pulsing-icon {
+    border-radius: 100%;
+    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.75);
+}
+
+.leaflet-pulsing-icon:after {
+    content: "";
+    border-radius: 100%;
+    height: 300%;
+    width: 300%;
+    position: absolute;
+    margin: -100% 0 0 -100%;
+
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(0.1, 0.1);
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+    }
+    50% {
+        opacity: 1;
+        -ms-filter: none;
+        filter: none;
+    }
+    100% {
+        transform: scale(1.2, 1.2);
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+    }
 }

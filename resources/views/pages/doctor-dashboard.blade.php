@@ -1,4 +1,4 @@
-@extends('structure.layout')
+@extends('layouts.app')
 
 @section('title', 'Doctor dashboard')
 
@@ -9,12 +9,22 @@
 
 
 @section('content')
-    <h1>Hello Teuta</h1>
-    {{--all the design content of dashboard goes here--}}
+  <div class="container doctor-dashboard-wrapper content-padding">
+      <div class="doc-info">
+          <h3 class="title">Welcome, <strong class="pink stethoscope">Mërgim Uka</strong></h3>
+          <div class="item-info">
+              <p class="boxed-icon location-icon">
+                  Vranjevc, Pristina
+              </p>
+              <p class="hospital-icon boxed-icon">American Clinic</p>
+              <p class="department-icon boxed-icon">Endocrinology</p>
+          </div>
+      </div>
+  </div>
+  <div id="map"></div>
 @endsection
 
 
 @section('page-scripts')
-    {{--importing javascript files regarding to this page--}}
-    {{--<script src="{{asset('custom-js/file.js')}}"></script>--}}
+
 @endsection
