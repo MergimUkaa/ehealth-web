@@ -166,7 +166,7 @@ End of Login Page Style
 
 Map Style
 */
-#map {
+#patient-map {
     height: 600px;
     border: 2px solid var(--lightgrey);
 }
@@ -325,7 +325,14 @@ body .leaflet-container a.leaflet-popup-close-button {
     line-height: 20px;
     border-radius: 100%;
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    transition: all .2s;
 }
+
+body .leaflet-container a.leaflet-popup-close-button:hover {
+    transform: rotate(90deg);
+}
+
+
 
 /*
 
@@ -344,7 +351,29 @@ Leaflet Js
     width: 300%;
     position: absolute;
     margin: -100% 0 0 -100%;
+}
 
+body .leaflet-touch .leaflet-bar {
+    border-color: var(--lightgrey);
+}
+
+body .leaflet-touch .leaflet-bar a {
+    color: #fff;
+    font-size: 22px;
+    width: 34px;
+    height: 34px;
+    line-height: 30px;
+}
+
+body .leaflet-touch .leaflet-bar a:first-child {
+    color: var(--green);
+    border-radius: 6px 6px 0 0;
+    border-bottom: 2px solid var(--lightgrey);
+}
+
+body .leaflet-touch .leaflet-bar a:last-child {
+    color: var(--pink);
+    border-radius: 0 0 6px 6px;
 }
 
 @keyframes pulsate {

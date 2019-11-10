@@ -1,43 +1,46 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-    let mymap = L.map('map').setView([59.329323, 18.068581], 13);
-
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-        maxZoom: 14,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        id: 'mapbox.streets'
-    }).addTo(mymap);
-
-    //Icons with images
-    // let LeafIcon = L.Icon.extend({
-    //     options: {
-    //         iconAnchor: [22, 94],
-    //         popupAnchor: [-3, -82],
-    //         shadowSize: [68, 95],
-    //         shadowAnchor: [22, 94]
-    //     }
-    // });
-
-    // let redIcon = new LeafIcon({iconUrl: '../images/icons/location-pin-red.svg'}),
-    //     orangeIcon = new LeafIcon({iconUrl: '../images/icons/location-pin-orange.svg'});
-
-
-
-    //Icons with pulse
+    let patientMap = L.map('patient-map').setView([59.329323, 18.068581], 13);
+    let mapLayer = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+    let i = 0;
     let iconSize = [24,24];
 
-    let criticalHighIcon = L.icon.pulse({iconSize:iconSize,color:'#F44336', fillColor: '#F44336'});
-    let criticalLowIcon = L.icon.pulse({iconSize:iconSize,color:'#FFA726', fillColor: '#FFA726'});
-    let lowIcon = L.icon.pulse({iconSize:iconSize,color:'#FF7043', fillColor: '#FF7043'});
-    let highIcon = L.icon.pulse({iconSize:iconSize,color:'#FFA726', fillColor: '#FFA726'});
-    let normalIcon = L.icon.pulse({iconSize:iconSize,color:'#66BB6A', fillColor: '#66BB6A'});
+    /*
+    *
+    * Map Pulse Markers
+    *
+    * **/
 
+    let criticalHighIcon = L.icon.pulse({
+        iconSize: iconSize,
+        color: '#F44336',
+        fillColor: '#F44336'});
 
-    L.icon = function (options) {
-        return new L.Icon(options);
-    };
+    let criticalLowIcon = L.icon.pulse({
+        iconSize: iconSize,
+        color: '#FFA726',
+        fillColor: '#FFA726'});
+
+    let lowIcon = L.icon.pulse({
+        iconSize: iconSize,
+        color: '#FF7043',
+        fillColor: '#FF7043'});
+
+    let highIcon = L.icon.pulse({
+        iconSize: iconSize,
+        color: '#FFA726',
+        fillColor: '#FFA726'});
+
+    let normalIcon = L.icon.pulse({
+        iconSize: iconSize,
+        color: '#66BB6A',
+        fillColor: '#66BB6A'});
+
+    /*
+    *
+    * Patient List
+    *
+    * **/
 
     let patients = [
         {
@@ -97,10 +100,25 @@ document.addEventListener("DOMContentLoaded", function(){
         },
     ]
 
-    let i = 0;
+    patientMap.scrollWheelZoom.disable();
+
+    L.tileLayer(mapLayer, {
+        maxZoom: 14,
+        id: 'mapbox.streets'
+    }).addTo(patientMap);
+
+    L.icon = function (options) {
+        return new L.Icon(options);
+    };
+
+    /*
+    *
+    * Patients Info Window Popup
+    *
+    * **/
 
     for (i = 0; i < patients.length; i++) {
-        L.marker([patients[i].latitude, patients[i].longitude], {icon: patients[i].statusIcon}).addTo(mymap)
+        L.marker([patients[i].latitude, patients[i].longitude], {icon: patients[i].statusIcon}).addTo(patientMap)
             .bindPopup("<div class='map-popup" + ' ' + patients[i].statusClass + "'>" +
                 "              <div class='user-image'>" +
                 "                  <img src=" + patients[i].imageUrl +">" +
