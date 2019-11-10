@@ -5,7 +5,9 @@
     --green: #8bdc63;
     --blue: #38b5e6;
     --lightgrey: #d3d3d3bf;
+    --favorite-grey: #f7f7f7;
     --mainFont: 'Fira Sans', sans-serif;
+    --dancingScriptFont: 'Dancing Script', cursive;
     --map-red-marker-color: #D98880;
     --map-yellow-marker-color: #F1C40F;
 }
@@ -13,6 +15,7 @@
 body, html {
     height: 100%;
     font-family: var(--mainFont);
+    font-weight: 300;
 }
 
 main {
@@ -26,7 +29,7 @@ main {
     font-size: 14px;
     color: #fff;
     height: 46px;
-    border-radius: 10px;
+    border-radius: 20px;
     text-transform: uppercase;
     font-weight: 600;
     border: 0;
@@ -120,8 +123,9 @@ End of Login Page Style
 */
 
 .title {
-    font-size: 30px;
-    margin-bottom: 34px;
+    font-weight: 300;
+    font-size: 18px;
+    color: grey;
 }
 
 .boxed-icon {
@@ -129,7 +133,8 @@ End of Login Page Style
     font-size: 16px;
     display: inline-flex;
     align-items: center;
-    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 0;
 }
 
 .boxed-icon:before {
@@ -142,7 +147,7 @@ End of Login Page Style
     margin-right: 6px;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: whitesmoke;
+    background-color: #fff;
     border-radius: 10px;
 }
 
@@ -159,7 +164,83 @@ End of Login Page Style
 }
 
 .navbar {
-    border: 2px solid var(--lightgrey);
+    border: 2px solid #d3d3d357;
+}
+
+.top-desc {
+    /*font-family: var(--dancingScriptFont);*/
+}
+
+.banner-with-pattern {
+    background-color: var(--favorite-grey);
+    padding-top: 40px;
+    margin-bottom: 30px;
+}
+
+.doc-info .item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    bottom: -23px;
+}
+
+.doc-info .name {
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+.filter-map-controls {
+    float: right;
+    display: flex;
+    margin-bottom: 20px;
+    border: 2px solid #d3d3d378;
+    border-radius: 26px;
+    padding: 4px;
+}
+
+.filter-map-controls .btn {
+    padding: 6px 28px;
+    border: 0;
+    border-radius: 20px;
+}
+
+.filter-map-controls .btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.filter-map-controls .btn:hover {
+    background-color: var(--favorite-grey);
+}
+
+.filter-map-controls .btn:first-child {
+    color: var(--green);
+}
+
+.filter-map-controls .btn.active:first-child {
+    background-color: var(--green);
+}
+
+.filter-map-controls .btn:nth-child(2) {
+    color: var(--orange);
+}
+
+.filter-map-controls .btn.active:nth-child(2) {
+    background-color: var(--orange);
+}
+
+.filter-map-controls .btn:last-child {
+    color: var(--pink);
+}
+
+.filter-map-controls .btn.active:last-child {
+    background-color: var(--pink);
+}
+
+.filter-map-controls .btn.active {
+    color: #fff;
 }
 
 /*
@@ -168,7 +249,7 @@ Map Style
 */
 #patient-map {
     height: 600px;
-    border: 2px solid var(--lightgrey);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
 }
 
 .map-popup {
@@ -208,7 +289,6 @@ Map Style
     background-color: #FF7043;
 }
 
-
 .map-popup.high .status {
     color: #FFA726;
 }
@@ -216,7 +296,6 @@ Map Style
 .map-popup.high .status:before {
     background-color: #FFA726;
 }
-
 
 .map-popup.normal .status {
     color: #66BB6A;
@@ -332,8 +411,6 @@ body .leaflet-container a.leaflet-popup-close-button:hover {
     transform: rotate(90deg);
 }
 
-
-
 /*
 
 Leaflet Js
@@ -341,7 +418,7 @@ Leaflet Js
 
 .leaflet-pulsing-icon {
     border-radius: 100%;
-    box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.75);
 }
 
 .leaflet-pulsing-icon:after {
