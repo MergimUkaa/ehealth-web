@@ -13,7 +13,7 @@
      <div class="banner-with-pattern">
          <div class="container">
              <div class="doc-info">
-                 <h3 class="title">Welcome</h3>
+                 <h3 class="title">Welcome,</h3>
                  <div class="item-info">
                      <h3 class="pink name">Mërgim Uka</h3>
                      <div class="">

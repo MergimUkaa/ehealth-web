@@ -47,6 +47,10 @@
                     </div>
                 </div>
                 <div class="col-7">
+                    {{--<video width="400" controls>--}}
+                        {{--<source src="{{ asset('media/doctor-dancing.mp4') }}" type="video/mp4">--}}
+                        {{--Your browser does not support HTML5 video.--}}
+                    {{--</video>--}}
                     <img src="{{ asset('images/the_female_doctor_4x.jpg') }}" alt="Female Doctor">
                 </div>
             </div>

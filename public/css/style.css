@@ -14,7 +14,6 @@
 
 body, html {
     height: 100%;
-    font-family: var(--mainFont);
     font-weight: 300;
 }
 
