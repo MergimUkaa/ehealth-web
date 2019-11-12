@@ -71,6 +71,42 @@ img {
     padding: 40px 0;
 }
 
+
+.navbar-light .navbar-nav .nav-link {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-light .navbar-nav .nav-link .caret {
+    margin-left: 8px;
+}
+
+.navbar-light .navbar-nav .nav-link svg {
+    width: 12px;
+    height: 12px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover svg path {
+    fill: var(--pink)
+}
+
+.initials {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 12px;
+    font-family: var(--mainFont);
+    font-weight: 500;
+    background-color: #cacfd28f;
+    color: grey;
+    border-radius: 100%;
+    margin-left: 10px;
+}
+
+
 /*
 
 Login Page Style
@@ -95,7 +131,6 @@ Login Page Style
     align-items: center;
     font-size: 26px;
     color: grey;
-    font-family: var(--mainFont);
     flex-direction: column;
     margin-bottom: 60px;
 }
@@ -164,15 +199,12 @@ End of Login Page Style
 
 .navbar {
     border: 2px solid #d3d3d357;
-}
-
-.top-desc {
-    /*font-family: var(--dancingScriptFont);*/
+    padding: 6px 10px;
 }
 
 .banner-with-pattern {
     background-color: var(--favorite-grey);
-    padding-top: 40px;
+    padding-top: 28px;
     margin-bottom: 30px;
 }
 
