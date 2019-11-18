@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,10 +10,16 @@
 |
 */
 
+use App\Models\Doctor as DoctorAlias;
+use App\User;
+use Illuminate\Support\Facades\DB;
+
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('pw', function() {
+return response()->json(DB::connection('cassandra')->table('processed_data')->where('patient_id', '<', 10)->first());
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

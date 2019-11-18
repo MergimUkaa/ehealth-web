@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function(){
+
+    // async function testApi() {
+    //     const response = await fetch('https://reqres.in/api/users?page=2');
+    //     const myJson = await response.json();
+    //     console.log(JSON.stringify(myJson));
+    // }
+    // testApi();
+
     if(document.getElementById("patient-map")) {
         let patientMap = L.map('patient-map').setView([59.329323, 18.068581], 13);
         let mapLayer = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';

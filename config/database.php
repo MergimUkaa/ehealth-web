@@ -63,6 +63,21 @@ return [
             ]) : [],
         ],
 
+
+        'cassandra' => [
+            'driver' => 'cassandra',
+            'host' => env('DB_HOST1', '127.0.0.1'),
+            'port' => env('DB_PORT1', 9042),
+            'keyspace' => env('DB_DATABASE1', 'cassandra_test'),
+            'username' => env('DB_USERNAME', ''),
+            'password' => env('DB_PASSWORD', ''),
+            'page_size' => '5000',
+            'consistency' => 'local_one',
+            'timeout' => null,
+            'connect_timeout' => 5.0,
+            'request_timeout' => 12.0,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
