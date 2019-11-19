@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('structure.layout')
 
 @section('title', 'Doctor dashboard')
 
@@ -15,10 +15,10 @@
              <div class="doc-info">
                  <h3 class="title">Welcome,</h3>
                  <div class="item-info">
-                     <h3 class="pink name">Mërgim Uka</h3>
+                     <h3 class="pink name">{{$user->name}} {{$user->surname}}</h3>
                      <div class="">
                          <p class="boxed-icon location-icon">
-                             Vranjevc, Pristina
+                            {{$user->address}}, {{$user->city->name}}
                          </p>
                          <p class="hospital-icon boxed-icon">American Clinic</p>
                          <p class="department-icon boxed-icon">Endocrinology</p>
@@ -30,13 +30,13 @@
      <div class="container clearfix mt-5">
          <div class="filter-map-controls mt-5">
              {{--Each button gets class --active-- when is clicked and the patients on the map are filtered--}}
-             <button class="btn active" data-toggle="tooltip" data-placement="top" title="See all patients">
+             <button class="btn active" data-toggle="tooltip" data-placement="top" title="See all patients" id="btn-all">
                  See all
              </button>
-             <button class="btn" data-toggle="tooltip" data-placement="top" title="See remote patients">
+             <button class="btn" data-toggle="tooltip" data-placement="top" title="See remote patients" id="btn-remote">
                  Remote
              </button>
-             <button class="btn" data-toggle="tooltip" data-placement="top" title="See patients on the hospital">
+             <button class="btn" data-toggle="tooltip" data-placement="top" title="See patients on the hospital" id="btn-hospital">
                 Hospital
              </button>
          </div>
@@ -47,5 +47,4 @@
 
 
 @section('page-scripts')
-
 @endsection

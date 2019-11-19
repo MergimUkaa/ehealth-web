@@ -2,21 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ec98aff-54c9-455b-825c-319fec252f15" name="Default Changelist" comment="Some renaming stuffs">
-      <change afterPath="$PROJECT_DIR$/.idea/laravel-plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Doctor.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/cassandra.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ehealth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ehealth.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/City.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Patient.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/helpers/getPatients.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/helpers/patient-category.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Doctor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Doctor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/cassandra.log" beforeDir="false" afterPath="$PROJECT_DIR$/public/cassandra.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/L.Icon.Pulse.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/L.Icon.Pulse.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/map-setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/map-setup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/doctor-dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/doctor-dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/structure/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/structure/head.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/structure/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/structure/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/structure/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/structure/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/structure/scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/structure/scripts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -195,6 +200,7 @@
       <workItem from="1573909014525" duration="11449000" />
       <workItem from="1573980873857" duration="4373000" />
       <workItem from="1573992657698" duration="11303000" />
+      <workItem from="1574100547582" duration="15655000" />
     </task>
     <task id="LOCAL-00001" summary="Design structure in general">
       <created>1573252075303</created>
@@ -257,6 +263,17 @@
     <MESSAGE value="Leaflet JS initialisation" />
     <MESSAGE value="Some renaming stuffs" />
     <option name="LAST_COMMIT_MESSAGE" value="Some renaming stuffs" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/layouts/app.blade.php</url>
+          <line>1</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

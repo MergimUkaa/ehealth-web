@@ -18,7 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('pw', function() {
-return response()->json(DB::connection('cassandra')->table('processed_data')->where('patient_id', '<', 10)->first());
+    return response()->json(\auth()->guard('web')->user());
+ $users = DB::connection('cassandra')->table('processed_data')->get();
+ $usersArray = array();
+ foreach ($users as $user){
+     array_push($usersArray, $user);
+ }
+ return $usersArray;
 });
 Auth::routes();
 

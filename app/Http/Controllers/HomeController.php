@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
+use PhpParser\Comment\Doc;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.doctor-dashboard');
+        $user = Doctor::with('city')->find(auth()->user()->id);
+        return view('pages.doctor-dashboard')->with('user', $user);
     }
 }
