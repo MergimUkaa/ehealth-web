@@ -45,6 +45,6 @@
  </section>
 @endsection
 
-
 @section('page-scripts')
+    <script src="{{asset('js/map-setup.js')}}" type="module"></script>
 @endsection

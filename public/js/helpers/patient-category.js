@@ -1,8 +1,6 @@
-function btnAll() {
-    console.log('hello');
-}
 
-document.getElementById('btn-all').addEventListener('click', function ()  {
-    console.log("heeyyy");
-});
-console.log('heyyy');
+function getAll() {
+    console.log("Mergim");
+}
+// document.getElementById('btn-all').addEventListener('click',getAll);
+console.log(document.getElementById('btn-all'));
