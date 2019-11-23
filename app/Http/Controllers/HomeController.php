@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
-use http\Client\Curl\User;
-use Illuminate\Http\Request;
-use PhpParser\Comment\Doc;
 
 class HomeController extends Controller
 {

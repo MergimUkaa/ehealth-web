@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\MapServices\MapService;
-use Illuminate\Http\Request;
+use App\Services\MapService;
 use Jenssegers\Date\Date;
 
 class MapController extends Controller

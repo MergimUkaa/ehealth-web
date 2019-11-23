@@ -14,6 +14,7 @@
 
 @include('structure.footer')
 @include('structure.scripts')
+
 @yield('page-scripts')
 </body>
 </html>

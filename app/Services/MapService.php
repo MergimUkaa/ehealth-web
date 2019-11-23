@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\MapServices;
+namespace App\Services;
 
 
 use App\Models\Patient;
@@ -20,6 +20,7 @@ class MapService
             ->leftJoin('remote_control', 'remote_control.visit_id', '=', 'visits.id')
             ->leftJoin('hospitalizations', 'hospitalizations.visit_id', '=', 'visits.id')
             ->select(
+                'patients.id',
                 'patients.name',
                 'patients.surname',
                 'patients.address',
@@ -55,6 +56,7 @@ class MapService
             ->join('sensors_in_use', 'sensors_in_use.remote_control_id', '=', 'remote_control.id')
             ->join('cities', 'cities.id', '=', 'patients.city_id')
             ->select(
+                'patients.id',
                 'patients.name',
                 'patients.surname',
                 'patients.address',
@@ -78,6 +80,7 @@ class MapService
             ->join('sensors_in_use', 'sensors_in_use.hospitalization_id', '=', 'hospitalizations.id')
             ->join('cities', 'cities.id', '=', 'patients.city_id')
             ->select(
+                'patients.id',
                 'patients.name',
                 'patients.surname',
                 'patients.address',
