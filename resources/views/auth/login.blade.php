@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('structure.layout')
 
 @section('content')
     <div class="login-page-wrapper">
@@ -10,7 +10,7 @@
                             <img src="{{ asset('images/logos/company-logo') }}" alt="Logo" width="40">
                             <span>We are
                                 <strong>
-                                    <span>e</span>
+                                    <span>smart</span>
                                     HEALTH
                                 </strong>
                             </span>

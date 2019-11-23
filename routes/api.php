@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\Patient;
+use App\Models\SensorInUse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +17,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:web')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('all-patients','MapController@all');
+Route::get('remote-patients', 'MapController@remote');
+Route::get('hospital-patients', 'MapController@hospitalization');
+
+Route::get('test', function () {
+    return response()->json(\App\Models\Doctor::with('city')->first());
+});
+
+
+

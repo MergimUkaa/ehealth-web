@@ -8,14 +8,13 @@
 <body>
 @include('structure.header')
 
-
-
-@yield('content')
-
-
+<main id="app">
+    @yield('content')
+</main>
 
 @include('structure.footer')
 @include('structure.scripts')
+
 @yield('page-scripts')
 </body>
 </html>

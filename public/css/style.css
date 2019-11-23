@@ -279,7 +279,7 @@ End of Login Page Style
 Map Style
 */
 #patient-map {
-    height: 600px;
+    height: 800px;
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
 }
 
@@ -319,6 +319,13 @@ Map Style
 .map-popup.low .status:before {
     background-color: #FF7043;
 }
+.map-popup.not-measured .status {
+    color: #555C5F;
+}
+
+.map-popup.not-measured .status:before {
+    background-color: #555C5F;
+}
 
 .map-popup.high .status {
     color: #FFA726;
@@ -344,6 +351,16 @@ Map Style
     border-radius: 100%;
     padding: 2px;
     background-color: #d3d3d3ad;
+}
+
+.map-popup .initials {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: whitesmoke;
+    font-size: 18px;
+    line-height: 46px;
+    text-transform: uppercase;
 }
 
 .map-popup.critical-high .user-image {
@@ -405,7 +422,7 @@ body .leaflet-popup-content {
     text-transform: capitalize;
 }
 
-.map-popup .location:before {
+.map-popup .location:before, .map-popup .time:before {
     content: "";
     display: inline-block;
     width: 14px;
@@ -415,7 +432,13 @@ body .leaflet-popup-content {
     margin-left: -2px;
     position: relative;
     top: 2px;
+}
+
+.map-popup .location:before {
     background-image: url("../images/icons/location-grey.svg");
+}
+.map-popup .time:before {
+    background-image: url("../images/icons/clock.svg");
 }
 
 .map-popup .info {
