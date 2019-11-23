@@ -9,6 +9,7 @@
 
 
 @section('content')
+
  <section class="content-padding pt-0  doctor-dashboard-wrapper">
      <div class="banner-with-pattern">
          <div class="container">

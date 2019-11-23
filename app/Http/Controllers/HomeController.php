@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 
-class HomeController extends Controller
+class  HomeController extends Controller
 {
     /**
      * Create a new controller instance.

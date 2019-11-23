@@ -37,7 +37,8 @@ class NewMessage implements ShouldBroadcast
     public function broadcastWith() {
         return [
             'emri' => 'Mergim',
-            'mbiemri' => 'uka'
+            'mbiemri' => 'uka',
+            'mosha' => 33
         ];
     }
 }

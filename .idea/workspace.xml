@@ -2,27 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ec98aff-54c9-455b-825c-319fec252f15" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Events/NewMessage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/websockets.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_11_22_222520_create_websockets_statistics_entries_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ehealth.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ehealth.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/helpers/iconTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Events/NewMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/NewMessage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MapController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MapController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/MapServices/MapService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/MapService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/broadcasting.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/broadcasting.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/cassandra.log" beforeDir="false" afterPath="$PROJECT_DIR$/public/cassandra.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/helpers/getPatients.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/helpers/getPatients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/map-setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/map-setup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/doctor-dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/doctor-dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/structure/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/structure/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/structure/scripts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/structure/scripts.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/patient-dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/patient-dashboard.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -242,7 +232,7 @@
       <workItem from="1574272076783" duration="4635000" />
       <workItem from="1574283903132" duration="10992000" />
       <workItem from="1574346103508" duration="28257000" />
-      <workItem from="1574501980066" duration="341000" />
+      <workItem from="1574501980066" duration="11144000" />
     </task>
     <task id="LOCAL-00001" summary="Design structure in general">
       <created>1573252075303</created>
@@ -293,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574461133291</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="integrating and configuring web sockets">
+      <created>1574502351573</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1574502351573</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +317,8 @@
     <MESSAGE value="Some renaming stuffs" />
     <MESSAGE value="changing layout logic, adding dynamic doctors, and adding dynamic patients to the map" />
     <MESSAGE value="reading from cassandra and doing refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="reading from cassandra and doing refactoring" />
+    <MESSAGE value="integrating and configuring web sockets" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrating and configuring web sockets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
