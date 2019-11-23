@@ -13,16 +13,22 @@
  <section class="content-padding pt-0  doctor-dashboard-wrapper">
      <div class="banner-with-pattern">
          <div class="container">
-             <div class="doc-info">
-                 <h3 class="title">Welcome,</h3>
+             <div class="doc-info user-info-details">
+                 <div class="initials big">MU</div>
                  <div class="item-info">
-                     <h3 class="pink name">{{$user->name}} {{$user->surname}}</h3>
-                     <div class="">
-                         <p class="boxed-icon location-icon">
-                            {{$user->address}}, {{$user->city->name}}
+                     <h3 class="user-name big-title">{{$user->name}} {{$user->surname}}</h3>
+                     <p class="boxed-icon location-icon">
+                         {{$user->address}}, {{$user->city->name}}
+                     </p>
+                     <div class="wrapped-sub-info">
+                         <p class="flex-item">
+                             <span class="label-item">Hospital</span>
+                             American Clinic
                          </p>
-                         <p class="hospital-icon boxed-icon">American Clinic</p>
-                         <p class="department-icon boxed-icon">Endocrinology</p>
+                         <p class="flex-item">
+                             <span class="label-item">Department</span>
+                             Endocrinology
+                         </p>
                      </div>
                  </div>
              </div>

@@ -12,6 +12,10 @@
     --map-yellow-marker-color: #F1C40F;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 body, html {
     height: 100%;
     font-weight: 300;
@@ -21,14 +25,22 @@ main {
     height: 100%;
 }
 
+body {
+    font-size: 1.4rem;
+}
+
+.form-group {
+    margin-bottom: 3rem;
+}
+
 .btn-element {
     background: rgb(56, 181, 230);
     background: linear-gradient(90deg, rgba(255, 163, 10, 1) 20%, rgba(234, 93, 189, 1) 100%);
-    padding: 4px 18px;
-    font-size: 14px;
+    padding: .4rem 1.8rem;
+    font-size: 1.4rem;
     color: #fff;
-    height: 46px;
-    border-radius: 20px;
+    height: 4.6rem;
+    border-radius: 2rem;
     text-transform: uppercase;
     font-weight: 600;
     border: 0;
@@ -46,10 +58,10 @@ img {
 }
 
 .form-control {
-    border: 2px solid var(--lightgrey);
+    border: .2rem solid var(--lightgrey);
     background-color: whitesmoke;
-    height: 44px;
-    border-radius: 10px;
+    height: 4.4rem;
+    border-radius: 1rem;
 }
 
 .form-control:focus {
@@ -59,32 +71,32 @@ img {
 }
 
 .label-item {
-    margin-bottom: 2px;
+    margin-bottom: .2rem;
     text-transform: uppercase;
     font-weight: 600;
     color: gray;
-    font-size: 12px;
-    padding-left: 15px;
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    letter-spacing: .5rem;
 }
 
 .content-padding {
-    padding: 40px 0;
+    padding: 4rem 0;
 }
 
-
 .navbar-light .navbar-nav .nav-link {
-    font-size: 16px;
+    font-size: 1.6rem;
     display: flex;
     align-items: center;
 }
 
 .navbar-light .navbar-nav .nav-link .caret {
-    margin-left: 8px;
+    margin-left: .8rem;
 }
 
 .navbar-light .navbar-nav .nav-link svg {
-    width: 12px;
-    height: 12px;
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 .navbar-light .navbar-nav .nav-link:hover svg path {
@@ -93,19 +105,29 @@ img {
 
 .initials {
     display: inline-block;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
+    width: 3.6rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
     text-align: center;
-    font-size: 12px;
+    font-size: 1.2rem;
     font-family: var(--mainFont);
-    font-weight: 500;
+    font-weight: 400;
     background-color: #cacfd28f;
     color: grey;
     border-radius: 100%;
-    margin-left: 10px;
 }
 
+.navbar .initials {
+    margin-left: 1rem;
+}
+
+.initials.big {
+    width: 10rem;
+    height: 10rem;
+    line-height: 10rem;
+    font-size: 3.2rem;
+    font-weight: 400;
+}
 
 /*
 
@@ -113,7 +135,6 @@ Login Page Style
 */
 
 .login-page-wrapper {
-    /*background-image: url("../images/pattern.svg");*/
     background-size: cover;
     display: flex;
     align-items: center;
@@ -123,27 +144,27 @@ Login Page Style
 
 .login-page-wrapper .btn-element {
     width: 100%;
-    margin-top: 28px;
+    margin-top: 2.8rem;
 }
 
 .login-page-wrapper .title-holder {
     display: flex;
     align-items: center;
-    font-size: 26px;
+    font-size: 2.6rem;
     color: grey;
     flex-direction: column;
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
 }
 
 .login-page-wrapper .form-holder {
-    width: 400px;
+    width: 40rem;
 }
 
 .login-page-wrapper .subtitle {
-    margin-bottom: 10px;
-    font-size: 14px;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
     color: grey;
-    padding-left: 15px;
+    padding-left: 1.5rem;
 }
 
 /*
@@ -158,83 +179,82 @@ End of Login Page Style
 
 .title {
     font-weight: 300;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: grey;
 }
 
 .boxed-icon {
     color: grey;
-    font-size: 16px;
+    font-size: 1.6rem;
     display: inline-flex;
     align-items: center;
-    margin-left: 10px;
     margin-bottom: 0;
 }
 
 .boxed-icon:before {
     content: "";
     display: inherit;
-    height: 30px;
-    width: 30px;
-    background-size: 18px;
+    height: 2rem;
+    width: 2rem;
+    background-size: 1.8rem;
     vertical-align: middle;
-    margin-right: 6px;
+    margin-right: .4rem;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #fff;
-    border-radius: 10px;
+    border-radius: 1rem;
+    position: relative;
+    top: -.3rem;
 }
 
 .boxed-icon.location-icon:before {
     background-image: url(../images/icons/location-green.svg);
 }
 
-.boxed-icon.hospital-icon:before {
-    background-image: url(../images/icons/hospital-buildings.svg);
-}
-
-.boxed-icon.department-icon:before {
-    background-image: url(../images/icons/medical-kit.svg);
-}
-
 .navbar {
-    border: 2px solid #d3d3d357;
-    padding: 6px 10px;
+    border: .2rem solid #d3d3d357;
+    padding: .6rem 1rem;
 }
 
 .banner-with-pattern {
-    background-color: var(--favorite-grey);
-    padding-top: 28px;
-    margin-bottom: 30px;
+    background-color: whitesmoke;
+    padding: 2.8rem 0;
+    margin-bottom: 3rem;
 }
 
-.doc-info .item-info {
+.user-info-details {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    bottom: -23px;
 }
 
-.doc-info .name {
-    font-size: 30px;
+.user-info-details .user-name {
+    font-size: 3rem;
+    letter-spacing: .8rem;
+}
+
+.user-info-details .item-info {
+    padding: 1.5rem 0 0 2.5rem;
+    flex: 1;
+}
+
+.user-info-details .name {
+    font-size: 3rem;
     font-weight: 400;
-    letter-spacing: 4px;
+    letter-spacing: .4rem;
 }
 
 .filter-map-controls {
     float: right;
     display: flex;
-    margin-bottom: 20px;
-    border: 2px solid #d3d3d378;
-    border-radius: 26px;
-    padding: 4px;
+    margin-bottom: 2rem;
+    border: .2rem solid #d3d3d378;
+    border-radius: 2.6rem;
+    padding: .4rem;
 }
 
 .filter-map-controls .btn {
-    padding: 6px 28px;
+    padding: .6rem 2.8rem;
     border: 0;
-    border-radius: 20px;
+    border-radius: 2rem;
+    font-size: 1.3rem;
 }
 
 .filter-map-controls .btn:focus {
@@ -279,8 +299,8 @@ End of Login Page Style
 Map Style
 */
 #patient-map {
-    height: 800px;
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    height: 80rem;
+    box-shadow: 0 .3rem 1.4rem rgba(0, 0, 0, 0.4);
 }
 
 .map-popup {
@@ -290,10 +310,10 @@ Map Style
 .map-popup .status:before {
     content: "";
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: .8rem;
+    height: .8rem;
     border-radius: 100%;
-    margin-right: 4px;
+    margin-right: .4rem;
 }
 
 .map-popup.critical-high .status {
@@ -319,6 +339,7 @@ Map Style
 .map-popup.low .status:before {
     background-color: #FF7043;
 }
+
 .map-popup.not-measured .status {
     color: #555C5F;
 }
@@ -344,12 +365,12 @@ Map Style
 }
 
 .map-popup .user-image {
-    width: 50px;
-    min-width: 50px;
-    min-height: 50px;
-    height: 50px;
+    width: 5rem;
+    min-width: 5rem;
+    min-height: 5rem;
+    height: 5rem;
     border-radius: 100%;
-    padding: 2px;
+    padding: .2rem;
     background-color: #d3d3d3ad;
 }
 
@@ -358,8 +379,8 @@ Map Style
     height: 100%;
     margin: 0;
     background-color: whitesmoke;
-    font-size: 18px;
-    line-height: 46px;
+    font-size: 1.8rem;
+    line-height: 4.6rem;
     text-transform: uppercase;
 }
 
@@ -391,30 +412,30 @@ Map Style
 }
 
 .map-popup h4 {
-    font-size: 18px;
-    margin-bottom: 4px;
+    font-size: 1.8rem;
+    margin-bottom: .4rem;
 }
 
 body .leaflet-popup-content p {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 13px;
+    font-size: 1.3rem;
     color: grey;
 }
 
 body .leaflet-popup-content {
-    margin: 18px 20px 14px 20px;
-    padding-bottom: 50px;
+    margin: 1.8rem 2rem 1.4rem 2rem;
+    padding-bottom: 5rem;
     position: relative;
-    padding-right: 14px;
+    padding-right: 1.4rem;
 }
 
 .map-popup .btn-element {
     color: #fff;
-    line-height: 22px;
-    height: 30px;
-    font-size: 12px;
-    margin-top: 16px;
+    line-height: 2.2rem;
+    height: 3rem;
+    font-size: 1.2rem;
+    margin-top: 1.6rem;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -425,39 +446,40 @@ body .leaflet-popup-content {
 .map-popup .location:before, .map-popup .time:before {
     content: "";
     display: inline-block;
-    width: 14px;
-    height: 14px;
-    background-size: 14px;
-    margin-right: 2px;
-    margin-left: -2px;
+    width: 1.4rem;
+    height: 1.4rem;
+    background-size: 1.4rem;
+    margin-right: .2rem;
+    margin-left: -.2rem;
     position: relative;
-    top: 2px;
+    top: .2rem;
 }
 
 .map-popup .location:before {
     background-image: url("../images/icons/location-grey.svg");
 }
+
 .map-popup .time:before {
     background-image: url("../images/icons/clock.svg");
 }
 
 .map-popup .info {
-    padding-left: 14px;
+    padding-left: 1.4rem;
 }
 
 body .leaflet-container a.leaflet-popup-close-button {
-    top: -6px;
-    right: -6px;
+    top: -.6rem;
+    right: -.6rem;
     border: none;
     text-align: center;
-    width: 24px;
-    height: 24px;
-    font: 20px/14px Tahoma, Verdana, sans-serif;
+    width: 2.4rem;
+    height: 2.4rem;
+    font: 2rem/1.4rem Tahoma, Verdana, sans-serif;
     background-color: #fff;
     padding: 0;
-    line-height: 20px;
+    line-height: 2rem;
     border-radius: 100%;
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 .3rem 1.4rem rgba(0, 0, 0, 0.4);
     transition: all .2s;
 }
 
@@ -472,7 +494,7 @@ Leaflet Js
 
 .leaflet-pulsing-icon {
     border-radius: 100%;
-    box-shadow: 1px 1px 8px 0 rgba(0, 0, 0, 0.75);
+    box-shadow: .1rem .1rem .8rem 0 rgba(0, 0, 0, 0.75);
 }
 
 .leaflet-pulsing-icon:after {
@@ -490,21 +512,128 @@ body .leaflet-touch .leaflet-bar {
 
 body .leaflet-touch .leaflet-bar a {
     color: #fff;
-    font-size: 22px;
-    width: 34px;
-    height: 34px;
-    line-height: 30px;
+    font-size: 2.2rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    line-height: 3rem;
 }
 
 body .leaflet-touch .leaflet-bar a:first-child {
     color: var(--green);
-    border-radius: 6px 6px 0 0;
-    border-bottom: 2px solid var(--lightgrey);
+    border-radius: .6rem .6rem 0 0;
+    border-bottom: .2rem solid var(--lightgrey);
 }
 
 body .leaflet-touch .leaflet-bar a:last-child {
     color: var(--pink);
-    border-radius: 0 0 6px 6px;
+    border-radius: 0 0 .6rem .6rem;
+}
+
+.half-column-flex {
+    display: flex;
+}
+
+.half-column-flex .flex-item {
+    flex: 0 0 50%;
+}
+
+.third-column-flex {
+    display: flex;
+}
+
+.third-column-flex .flex-item {
+    flex: 0 0 33.33%;
+}
+
+.wrapped-sub-info {
+    display: flex;
+    padding-top: 2rem;
+    border-top: .2rem solid #d3d3d340;
+    margin-top: 2rem;
+}
+
+.wrapped-sub-info .flex-item {
+    padding-right: 7rem;
+}
+
+.wrapped-sub-info p {
+    font-size: 1.6rem;
+}
+
+.wrapped-sub-info .label-item {
+    padding: 0;
+    display: block;
+}
+
+body .dropdown-item {
+    font-size: 1.2rem;
+}
+
+.sub-info {
+    color: #A6ACAF;
+}
+
+.patient-card {
+    padding: 2rem;
+    background-image: url("../images/company-logo-patern.png");
+    background-size: cover;
+    background-position: center;
+    width: 40rem;
+    border: .2rem solid #efefef;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+/*.patient-card:before {*/
+    /*content: "";*/
+    /*display: inline-block;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*background-color: rgba(255, 255, 255, 0.6);*/
+    /*z-index: 0;*/
+/*}*/
+
+/*.patient-card * {*/
+/*position: relative;*/
+/*z-index: 1;*/
+/*}*/
+
+.patient-card .label-item {
+    padding: 0;
+    display: block;
+}
+
+.blood-type {
+    color: #C0392B;
+}
+
+.patient-card .date {
+    margin-bottom: 0;
+    color: grey;
+    font-weight: 300;
+}
+
+.patient-card .flex-item:last-child {
+    padding-right: 0;
+}
+
+.patient-card .name {
+    font-weight: bold;
+    font-size: 2.4rem;
+}
+
+.patient-card .card-name {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: .6rem;
+    color: var(--orange);
+    position: absolute;
+    top: .4rem;
+    right: .8rem;
+    font-weight: bold;
 }
 
 @keyframes pulsate {

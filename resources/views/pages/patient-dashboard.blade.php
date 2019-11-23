@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('structure.layout')
 
 @section('title', 'Doctor dashboard')
 
@@ -13,15 +13,38 @@
  <section class="content-padding pt-0  doctor-dashboard-wrapper">
      <div class="banner-with-pattern">
          <div class="container">
-             <div class="doc-info">
+             <div class="doc-info user-info-details">
+                 <div class="initials big">MU</div>
                  <div class="item-info">
-                     <h3 class="pink name">Teuta Koraqi</h3>
-                     <div class="">
-                         <p class="boxed-icon location-icon">
-                             Vranjevc, Pristina
+                     <h3 class="user-name big-title">Mergim Uka</h3>
+                     <p class="boxed-icon location-icon">
+                         Zurich, Swiss
+                     </p>
+                     <p class="sub-info grey-font">
+                         mergim@gmail.com, +38349111122
+                     </p>
+
+                     <div class="wrapped-sub-info">
+                         <p class="flex-item">
+                             <span class="label-item">Hospital</span>
+                             American Clinic
                          </p>
-                         <p class="hospital-icon boxed-icon">American Clinic</p>
-                         <p class="department-icon boxed-icon">Endocrinology</p>
+                         <p class="flex-item">
+                             <span class="label-item">Department</span>
+                             Endocrinology
+                         </p>
+                         <p class="flex-item">
+                             <span class="label-item">Room No.</span>
+                             345
+                         </p>
+                         <p class="flex-item">
+                             <span class="label-item">Bed No.</span>
+                             245
+                         </p>
+                         <p class="flex-item">
+                             <span class="label-item">Age</span>
+                             26 years
+                         </p>
                      </div>
                  </div>
              </div>
@@ -31,37 +54,24 @@
          <div class="left-side-bar">
              <div class="container">
                  <div class="left-side-bar">
-                     <h4 class="subtitle">Contact Info</h4>
-                     <div class="">
-                         <label class="label-item">Email</label>
-                         <p class="label-value">teuta_koraqi@hotmail.com</p>
-                         <div class="">
-                             <label class="label-item">Tel</label>
-                             <p class="label-value">049884409</p>
+                     <div class="card patient-card">
+                         <span class="card-name">Vizita</span>
+                         <h3 class="name">Mergim Uka</h3>
+                         <p class="date">6 January, 2020</p>
+                         <div class="wrapped-sub-info">
+                             <p class="flex-item blood-type">
+                                 <span class="label-item">Blood Type</span>
+                                 0 positive
+                             </p>
+                             <p class="flex-item">
+                                 <span class="label-item">Allergies</span>
+                                 No allergies
+                             </p>
                          </div>
-
-                         <div class="">
-                             <label class="label-item">Room No.</label>
-                             <p class="label-value">345</p>
-                         </div>
-
-                         <div class="">
-                             <label class="label-item">Bed No.</label>
-                             <p class="label-value">32</p>
-                         </div>
-                     </div>
-                     <div class="">
-                         <label class="label-item">Age</label>
-                         <p class="label-value">27 years old</p>
-                     </div>
-
-
-
-                     <div class="card">
-                         sensor properties
-                         <p>Name</p>
-                         <p>Manifacture</p>
-                         <p>Pulse: 80/160</p>
+                         <p class="mb-0">
+                             <span class="label-item">Diagnose</span>
+                             Flu and some problems with ear hearing
+                         </p>
                      </div>
                  </div>
                  <div class="chart-container">
