@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -23,9 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        $user = Doctor::with('city')->find(auth()->user()->id);
-
-//        return view('pages.doctor-dashboard')->with('user', $user);
-        return view('pages.doctor-dashboard');
+        $user = Doctor::with('city')->find(auth()->user()->id);
+        return view('pages.doctor-dashboard')->with('user', $user);
     }
 }

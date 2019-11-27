@@ -16,12 +16,10 @@
                  <div class="initials big">MU</div>
                  <div class="item-info">
                      <h3 class="user-name big-title">
-                         Mergim Uka
-                         {{--{{$user->name}} {{$user->surname}}--}}
+                         {{$user->name}} {{$user->surname}}
                      </h3>
                      <p class="boxed-icon location-icon">
-                         Zurich
-{{--                         {{$user->address}}, {{$user->city->name}}--}}
+                         {{$user->address}}, {{$user->city->name}}
                      </p>
                      <div class="wrapped-sub-info">
                          <p class="flex-item">
