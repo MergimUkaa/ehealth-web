@@ -1,7 +1,7 @@
 import {getPatients} from "./helpers/getPatients.js";
 
 if ( document.getElementById("btn-all").classList.contains('active') ){
-    getPatients('http://localhost:8000/api/all-patients', 'all');
+    getPatients('http://localhost:8000/api/all-patients');
 }
     const btnAll = document.getElementById('btn-all');
     const btnRemote = document.getElementById('btn-remote');
@@ -11,21 +11,21 @@ if ( document.getElementById("btn-all").classList.contains('active') ){
         document.getElementById("btn-remote").classList.remove('active');
         document.getElementById("btn-all").classList.add('active');
         document.getElementById("btn-hospital").classList.remove('active');
-        getPatients('http://localhost:8000/api/all-patients', 'all');
+        getPatients('http://localhost:8000/api/all-patients');
     });
 
     btnHospital.addEventListener('click',function () {
         document.getElementById("btn-remote").classList.remove('active');
         document.getElementById("btn-all").classList.remove('active');
         document.getElementById("btn-hospital").classList.add('active');
-        getPatients('http://localhost:8000/api/hospital-patients', 'hospital');
+        getPatients('http://localhost:8000/api/hospital-patients');
     });
 
     btnRemote.addEventListener('click',function () {
         document.getElementById("btn-remote").classList.add('active');
         document.getElementById("btn-all").classList.remove('active');
         document.getElementById("btn-hospital").classList.remove('active');
-        getPatients('http://localhost:8000/api/remote-patients', 'remote');
+        getPatients('http://localhost:8000/api/remote-patients');
     });
 // document.addEventListener("DOMContentLoaded", function() {
 //

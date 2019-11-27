@@ -21,7 +21,7 @@
             var before = ['background-color: '+this.options.fillColor];
             var after = [
 
-                'box-shadow: 0 0 6px 2px '+this.options.color,
+                'box-shadow: 0 0 6px 6px '+this.options.color,
 
                 'animation: pulsate ' + this.options.heartbeat + 's ease-out',
                 'animation-iteration-count: infinite',
