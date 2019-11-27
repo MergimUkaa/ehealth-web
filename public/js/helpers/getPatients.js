@@ -1,4 +1,17 @@
-import {notMeasuredIcon, lowIcon, highIcon, criticalLowIcon, criticalHighIcon, normalIcon} from "./iconTypes.js";
+import {
+    notMeasuredIcon,
+    lowIcon,
+    highIcon,
+    criticalLowIcon,
+    criticalHighIcon,
+    normalIcon,
+    notMeasuredProps,
+    lowProps,
+    highProps,
+    criticalLowProps,
+    criticalHighProps,
+    normalIconProps
+} from "./iconTypes.js";
 
 let patientMap = L.map('patient-map').setView([42.639885, 20.891453], 10);
 let mapLayer = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
@@ -13,9 +26,6 @@ let markerLayers = new L.LayerGroup();
 *
 * **/
 
-Echo.channel('home').listen('NewMessage', function (e) {
-    console.log(e);
-});
 
 
 let patients = [];
@@ -23,39 +33,79 @@ let statusClass;
 let statusText;
 let measuredTime;
 
-
 async function getPatients(apiUrl) {
 
 
     if (document.getElementById("patient-map")) {
 
         markerLayers.clearLayers();
-        const response = await fetch(apiUrl);
-    const myJson = await response.json();
+        patientMap.scrollWheelZoom.disable();
 
-        myJson.map(patient => {
-            if (patient.sensorId) {
-                patients.push(patient);
+
+        const response = await fetch(apiUrl);
+        const myJson = await response.json();
+        let icon;
+
+
+
+        myJson.map((patient, index) => {
+            if (!patient.sensorId) {
+                myJson.splice(index, 1);
             }
+
+            patients.push(patient);
+            switch (patient.status) {
+                case 'critical high':
+                    patient.icon = normalIcon;
+                    break;
+                case 'critical low':
+                    patient.icon = criticalLowIcon;
+                    break;
+                case 'high':
+                    patient.icon = highIcon;
+                    break;
+                case 'low':
+                    patient.icon = lowIcon;
+                    break;
+                case 'normal':
+                    patient.icon = normalIcon;
+                    break;
+                default: patient.icon = notMeasuredIcon;
+            }
+
+
         });
+        console.log(myJson);
 
         /*
         *
         * Patients Info Window Popup
         *
         * **/
-        patientMap.scrollWheelZoom.disable();
-
         L.tileLayer(mapLayer, {
             maxZoom: 16,
             id: 'mapbox.streets'
         }).addTo(patientMap);
 
-        L.icon = function (options) {
-            return new L.Icon(options);
-        };
-        let icon;
+
+        Echo.channel('StreamingData').listen('ReadStreamingData', function (e) {
+            console.log(e.data[0].sensor_id);
+            console.log(e);
+            let index;
+            // index =  myJson.findIndex(x => x.sensorId === e.data[0].sensor_id);
+            myJson.some(function(entry, i) {
+                 if (entry.sensorId === e.data[0].sensor_id){
+                    return true;
+                }
+            });
+        });
         for (i = 0; i < patients.length; i++) {
+            if (i === 1) {
+                patients[i].icon = L.icon.pulse(lowProps);
+            }
+             if (i === 35) {
+                 patients[i].icon = L.icon.pulse(normalIconProps);
+             }
             if (patients[i].status) {
                 statusClass = patients[i].status.split(' ').join('-');
                 statusText = patients[i].status;
@@ -64,27 +114,9 @@ async function getPatients(apiUrl) {
                 statusText = 'Nuk ka te dhena!';
             }
             measuredTime = patients[i].measuredTime ? patients[i].measuredTime : 'Data nuk ekziston!';
-            switch (patients[i].status) {
-                case 'critical high':
-                    icon = criticalHighIcon;
-                    break;
-                case 'critical low':
-                    icon = criticalLowIcon;
-                    break;
-                case 'high':
-                    icon = highIcon;
-                    break;
-                case 'low':
-                    icon = lowIcon;
-                    break;
-                case 'normal':
-                    icon = normalIcon;
-                    break;
-                case false:
-                    icon = notMeasuredIcon;
-                    break;
-            }
-            var marker = L.marker([patients[i].latitude, patients[i].longitude], {icon: icon})
+
+
+            var marker = L.marker([patients[i].latitude, patients[i].longitude], {icon: patients[i].icon})
                 .bindPopup("<div class='map-popup" + ' ' + statusClass + "'>" +
                     "              <div class='user-image'>" +
                     // "                  <img src=" + patients[i].imageUrl + ">" +
@@ -102,7 +134,6 @@ async function getPatients(apiUrl) {
             markerLayers.addLayer(marker);
 
         }
-
         patients = [];
 
     }

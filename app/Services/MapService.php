@@ -134,6 +134,7 @@ function addDataFromCassandra($patients)
 
             }
         }
+        $patient->icon = null;
         $patient->initials = substr($patient->name, 0, 1) . '' . substr($patient->surname, 0, 1);
     }
 }
