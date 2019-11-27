@@ -15,9 +15,13 @@
              <div class="doc-info user-info-details">
                  <div class="initials big">MU</div>
                  <div class="item-info">
-                     <h3 class="user-name big-title">{{$user->name}} {{$user->surname}}</h3>
+                     <h3 class="user-name big-title">
+                         Mergim Uka
+                         {{--{{$user->name}} {{$user->surname}}--}}
+                     </h3>
                      <p class="boxed-icon location-icon">
-                         {{$user->address}}, {{$user->city->name}}
+                         Zurich
+{{--                         {{$user->address}}, {{$user->city->name}}--}}
                      </p>
                      <div class="wrapped-sub-info">
                          <p class="flex-item">
@@ -33,9 +37,8 @@
              </div>
          </div>
      </div>
-     <div class="container clearfix mt-5">
-         <div class="filter-map-controls mt-5">
-             {{--Each button gets class --active-- when is clicked and the patients on the map are filtered--}}
+     <div class="container clearfix">
+         <div class="filter-map-controls">
              <button class="btn active" data-toggle="tooltip" data-placement="top" title="See all patients" id="btn-all">
                  See all
              </button>
