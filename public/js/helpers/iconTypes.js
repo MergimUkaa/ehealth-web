@@ -92,5 +92,47 @@ let normalIcon = L.icon.pulse({
     animate: false
 });
 
+function markerIcon(patientStatus, animated = false) {
+    let patientIcon;
+    switch (patientStatus) {
+        case 'critical high':
+            if (animated === false){
+                patientIcon = criticalHighIcon;
+            } else {
+                patientIcon = L.icon.pulse(criticalHighProps);
+            }
+            break;
+        case 'critical low':
+            if (animated === false) {
+                patientIcon = criticalLowIcon;
+            } else {
+                patientIcon =  L.icon.pulse(criticalLowProps);
+            }
+            break;
+        case 'high':
+            if (animated === false) {
+                patientIcon = highIcon;
+            } else {
+                patientIcon =  L.icon.pulse(highProps);
+            }
+            break;
+        case 'low':
+            if (animated === false) {
+                patientIcon = lowIcon;
+            } else {
+                patientIcon =  L.icon.pulse(lowProps);
+            }
+            break;
+        case 'normal':
+            if (!animated) {
+                patientIcon = normalIcon;
+            } else {
+                patientIcon =  L.icon.pulse(normalIconProps);
+            }
+            break;
+        default: patientIcon = notMeasuredIcon;
+    }
+    return patientIcon;
 
-export {notMeasuredIcon, criticalHighIcon, criticalLowIcon, lowIcon, highIcon, normalIcon}
+}
+export {notMeasuredIcon, criticalHighIcon, criticalLowIcon, lowIcon, highIcon, normalIcon, markerIcon}

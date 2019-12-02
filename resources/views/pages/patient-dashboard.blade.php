@@ -14,56 +14,58 @@
      <div class="banner-with-pattern">
          <div class="container">
              <div class="doc-info user-info-details">
-                 <div class="initials big">MU</div>
+                 <div class="initials big">{{substr($patient->name,0,1)}} {{substr($patient->surname,0,1)}}</div>
                  <div class="item-info">
-                     <h3 class="user-name big-title">Mergim Uka</h3>
+                     <h3 class="user-name big-title">{{$patient->name}} {{$patient->surname}}</h3>
                      <p class="boxed-icon location-icon">
-                         Zurich, Swiss
+                        {{ $patient->address}}, {{$patient->city->name}}
                      </p>
                      <p class="sub-info grey-font">
-                         mergim@gmail.com, +38349111122
+                         {{$patient->email}}, {{$patient->phone}}
                      </p>
 
                      <div class="divided-column">
+                         @if($patient && $patient->bedNumber)
                          <div class="wrapped-sub-info">
                              <p class="flex-item">
                                  <span class="label-item">Hospital</span>
-                                 American Clinic
+                                 {{$patient->hospitalName}}
                              </p>
                              <p class="flex-item">
                                  <span class="label-item">Department</span>
-                                 Endocrinology
+                                 {{$patient->repartName}}
                              </p>
                              <p class="flex-item">
                                  <span class="label-item">Room No.</span>
-                                 345
+                                 {{$patient->roomNumber}}
                              </p>
                              <p class="flex-item">
                                  <span class="label-item">Bed No.</span>
-                                 245
+                                 {{$patient->bedNumber}}
                              </p>
                              <p class="flex-item">
                                  <span class="label-item">Age</span>
-                                 26 years
+                                 {{\Carbon\Carbon::createFromDate($patient->birthday)->diff(\Carbon\Carbon::now())->format('%y')}} years
                              </p>
                          </div>
+                         @endif
                          <div class="card patient-card">
                              <span class="card-name">Vizita</span>
-                             <h3 class="name">Mergim Uka</h3>
-                             <p class="date">6 January, 2020</p>
+                             <h3 class="name">{{$patient->name}} {{$patient->surname}}</h3>
+                             <p class="date">{{\Carbon\Carbon::createFromDate($patient->visitDate)->format(' jS  m Y h:i A')}} </p>
                              <div class="wrapped-sub-info">
                                  <p class="flex-item blood-type">
                                      <span class="label-item">Blood Type</span>
-                                     0 positive
+                                     {{$patient->blood_group}}
                                  </p>
                                  <p class="flex-item">
                                      <span class="label-item">Allergies</span>
-                                     No allergies
+                                   {{$patient->allergies ? $patient->allergies : 'No allergies'}}
                                  </p>
                              </div>
                              <p class="mb-0">
                                  <span class="label-item">Diagnose</span>
-                                 Flu and some problems with ear hearing
+                                 {{$patient->diagnosis}}
                              </p>
                          </div>
                      </div>
@@ -74,8 +76,8 @@
      <div class="insights-content">
          <div class="left-side-bar">
              <div class="container">
-                 <div class="chart-container">
-                     <canvas id="canvas"></canvas>
+                 <div class="chart-container" id="app">
+                     <live-updating-chart></live-updating-chart>
                  </div>
              </div>
          </div>
@@ -85,5 +87,7 @@
 
 
 @section('page-scripts')
+    <script>
 
+    </script>
 @endsection

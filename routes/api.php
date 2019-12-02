@@ -23,7 +23,7 @@ Route::middleware('auth:web')->get('/user', function (Request $request) {
 Route::get('all-patients','MapController@all');
 Route::get('remote-patients', 'MapController@remote');
 Route::get('hospital-patients', 'MapController@hospitalization');
-
+Route::get('patient/{patientId}/data', 'PatientController@getSensorValues');
 Route::get('test', function () {
     return response()->json(\App\Models\Doctor::with('city')->first());
 });

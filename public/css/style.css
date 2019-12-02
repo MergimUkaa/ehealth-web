@@ -595,7 +595,7 @@ body .dropdown-item {
 
 .patient-card {
     padding: 2rem;
-    background-image: url("../images/company-logo-patern.png");
+    /*background-image: url("../images/company-logo-patern.png");*/
     background-size: cover;
     background-position: center;
     width: 40rem;

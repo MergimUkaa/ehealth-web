@@ -36,6 +36,7 @@
              </div>
          </div>
      </div>
+
      <div class="container clearfix">
          <div class="filter-map-controls">
              <button class="btn active" data-toggle="tooltip" data-placement="top" title="See all patients" id="btn-all">

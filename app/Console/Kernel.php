@@ -27,9 +27,15 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-        $schedule->command('streaming:data')
+//        $schedule->command('streaming:data')
+//            ->everyMinute()
+//            ->sendOutputTo('public/storage/scheduler-log.txt')
+//            ->emailOutputOnFailure('mergimuka1@gmail.com');
+
+
+        $schedule->command('streaming:chart')
             ->everyMinute()
-            ->sendOutputTo('public/storage/scheduler-log.txt')
+            ->sendOutputTo('public/storage/chart-streaming-log.txt')
             ->emailOutputOnFailure('mergimuka1@gmail.com');
     }
 
