@@ -19,6 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+                @if(auth()->user())
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link" href="#" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -44,6 +45,7 @@
                         </form>
                     </div>
                 </li>
+                    @endif
             </ul>
         </div>
     </div>

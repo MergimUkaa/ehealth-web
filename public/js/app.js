@@ -1862,17 +1862,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LiveUpdatingLineChart.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LiveUpdatingLineChart.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LineChart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LineChart.js */ "./resources/js/components/LineChart.js");
-//
+/* harmony import */ var _LineChart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LineChart.js */ "./resources/js/components/Pulse/LineChart.js");
 //
 //
 //
@@ -1894,13 +1893,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     sensorData: function sensorData() {
-      // console.log('mergim');
       this.fillData();
     }
   },
   mounted: function mounted() {
+    this.patientId = window.location.pathname.split('/')[2];
     this.fillData();
-    this.getSensorValues(102);
+    this.getSensorValues(this.patientId);
     this.readLiveData();
   },
   methods: {
@@ -1934,12 +1933,12 @@ __webpack_require__.r(__webpack_exports__);
         });
         _this.loaded = true;
       })["catch"](function (e) {
-        console.log(e);
+        alert('An error has occurred');
       });
     },
     readLiveData: function readLiveData() {
       var self = this;
-      Echo.channel('patient102').listen('StreamingChart', function (e) {
+      Echo["private"]('patient.' + this.patientId).listen('StreamingChart', function (e) {
         e.data.map(function (el) {
           if (self.labels.length > 9) {
             self.labels.shift();
@@ -1951,6 +1950,208 @@ __webpack_require__.r(__webpack_exports__);
         });
         console.log(self.labels);
         console.log(self.sensorData);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LineChart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LineChart.js */ "./resources/js/components/Temperature/LineChart.js");
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    LineChart: _LineChart_js__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      datacollection: {},
+      labels: [],
+      sensorData: [],
+      loaded: false
+    };
+  },
+  watch: {
+    sensorData: function sensorData() {
+      // console.log('mergim');
+      this.fillData();
+    }
+  },
+  mounted: function mounted() {
+    this.patientId = window.location.pathname.split('/')[2];
+    this.fillData();
+    this.getSensorValues(this.patientId);
+    this.readLiveData();
+  },
+  methods: {
+    fillData: function fillData() {
+      this.datacollection = {
+        labels: this.labels,
+        datasets: [{
+          label: 'Sensor values',
+          backgroundColor: "#38b5e6",
+          borderColor: "#38b5e6",
+          order: 10,
+          fill: false,
+          data: this.sensorData
+        }]
+      };
+    },
+    getSensorValues: function getSensorValues(patientId) {
+      var _this = this;
+
+      axios.get('http://localhost:8000/api/patient/' + this.patientId + '/data').then(function (res) {
+        res.data.map(function (el) {
+          if (_this.labels.length > 9) {
+            _this.labels.shift();
+
+            _this.sensorData.shift();
+          }
+
+          _this.labels.push(el.created_at);
+
+          _this.sensorData.push(el.min_value_measured);
+        });
+        _this.loaded = true;
+      })["catch"](function (e) {
+        alert('An error has occurred');
+      });
+    },
+    readLiveData: function readLiveData() {
+      var self = this;
+      Echo["private"]('patient.' + 102).listen('StreamingChart', function (e) {
+        e.data.map(function (el) {
+          if (self.labels.length > 9) {
+            self.labels.shift();
+            self.sensorData.shift();
+          }
+
+          self.labels.push(el.created_at);
+          self.sensorData.push(el.min_value_measured);
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LineChart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LineChart.js */ "./resources/js/components/blood-pressure/LineChart.js");
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    LineChart: _LineChart_js__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      datacollection: {},
+      labels: [],
+      sensorDataMin: [],
+      sensorDataMax: [],
+      patientId: null,
+      loaded: false
+    };
+  },
+  watch: {
+    sensorDataMin: function sensorDataMin() {
+      this.fillData();
+    }
+  },
+  mounted: function mounted() {
+    this.patientId = window.location.pathname.split('/')[2];
+    this.fillData();
+    this.getSensorValues(this.patientId);
+    this.readLiveData();
+  },
+  methods: {
+    fillData: function fillData() {
+      this.datacollection = {
+        labels: this.labels,
+        datasets: [{
+          label: 'Blood Pressure Min',
+          backgroundColor: "#38b5e6",
+          borderColor: "#38b5e6",
+          order: 10,
+          fill: false,
+          data: this.sensorDataMin
+        }, {
+          label: 'Blood Pressure Max',
+          backgroundColor: "#ff6600",
+          borderColor: "#ff6600",
+          order: 10,
+          fill: false,
+          data: this.sensorDataMax
+        }]
+      };
+    },
+    getSensorValues: function getSensorValues(patientId) {
+      var _this = this;
+
+      axios.get('http://localhost:8000/api/patient/' + patientId + '/data').then(function (res) {
+        res.data.map(function (el) {
+          if (_this.labels.length > 9) {
+            _this.labels.shift();
+
+            _this.sensorDataMin.shift();
+
+            _this.sensorDataMax.shift();
+          }
+
+          _this.labels.push(el.created_at);
+
+          _this.sensorDataMin.push(el.min_value_measured);
+
+          _this.sensorDataMax.push(el.max_value_measured);
+        });
+        _this.loaded = true;
+      })["catch"](function (e) {
+        alert('An error has occurred');
+      });
+    },
+    readLiveData: function readLiveData() {
+      var self = this;
+      Echo["private"]('patient.' + this.patientId).listen('StreamingChart', function (e) {
+        e.data.map(function (el) {
+          if (self.labels.length > 9) {
+            self.labels.shift();
+            self.sensorDataMin.shift();
+            self.sensorDataMax.shift();
+          }
+
+          self.labels.push(el.created_at);
+          self.sensorDataMin.push(el.min_value_measured);
+          self.sensorDataMax.push(el.max_value_measured);
+        });
       });
     }
   }
@@ -81208,10 +81409,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LiveUpdatingLineChart.vue?vue&type=template&id=12beaebd&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LiveUpdatingLineChart.vue?vue&type=template&id=12beaebd& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=template&id=0e6bb1e7&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=template&id=0e6bb1e7& ***!
+  \******************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -81231,19 +81432,77 @@ var render = function() {
         ? _c("line-chart", {
             attrs: { "chart-data": _vm.datacollection, height: 200 }
           })
-        : _vm._e(),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              return _vm.getSensorValues(160)
-            }
-          }
-        },
-        [_vm._v("Randomize")]
-      )
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=template&id=795cc242&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=template&id=795cc242& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "small" },
+    [
+      _vm.loaded
+        ? _c("line-chart", {
+            attrs: { "chart-data": _vm.datacollection, height: 200 }
+          })
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=template&id=5129102c&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=template&id=5129102c& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "small" },
+    [
+      _vm.loaded
+        ? _c("line-chart", {
+            attrs: { "chart-data": _vm.datacollection, height: 200 }
+          })
+        : _vm._e()
     ],
     1
   )
@@ -93417,7 +93676,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('live-updating-chart', __webpack_require__(/*! ./components/LiveUpdatingLineChart.vue */ "./resources/js/components/LiveUpdatingLineChart.vue")["default"]);
+Vue.component('live-updating-temperature-chart', __webpack_require__(/*! ./components/Temperature/LiveUpdatingLineChart.vue */ "./resources/js/components/Temperature/LiveUpdatingLineChart.vue")["default"]);
+Vue.component('live-updating-pulse-chart', __webpack_require__(/*! ./components/Pulse/LiveUpdatingLineChart.vue */ "./resources/js/components/Pulse/LiveUpdatingLineChart.vue")["default"]);
+Vue.component('live-updating-blood-pressure-chart', __webpack_require__(/*! ./components/blood-pressure/LiveUpdatingLineChart.vue */ "./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue")["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -93549,10 +93810,141 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/LineChart.js":
-/*!**********************************************!*\
-  !*** ./resources/js/components/LineChart.js ***!
-  \**********************************************/
+/***/ "./resources/js/components/Pulse/LineChart.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/Pulse/LineChart.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp;
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Line"],
+  mixins: [reactiveProp],
+  // props: ['options'],
+  data: function data() {
+    return {
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Te dhenat e gjeneruara ne kohe reale'
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              min: 40,
+              max: 140
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Pulse'
+            },
+            afterTickToLabelConversion: function afterTickToLabelConversion(q) {
+              for (var tick in q.ticks) {
+                q.ticks[tick] += ' rrahje';
+              }
+            }
+          }]
+        }
+      }
+    };
+  },
+  watch: {
+    chartData: function chartData() {// this.$data._chart.update()
+    }
+  },
+  mounted: function mounted() {
+    // this.chartData is created in the mixin.
+    // If you want to pass options please create a local options object
+    this.renderChart(this.chartData, this.options);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/Pulse/LiveUpdatingLineChart.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/Pulse/LiveUpdatingLineChart.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LiveUpdatingLineChart_vue_vue_type_template_id_0e6bb1e7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LiveUpdatingLineChart.vue?vue&type=template&id=0e6bb1e7& */ "./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=template&id=0e6bb1e7&");
+/* harmony import */ var _LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LiveUpdatingLineChart.vue?vue&type=script&lang=js& */ "./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LiveUpdatingLineChart_vue_vue_type_template_id_0e6bb1e7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LiveUpdatingLineChart_vue_vue_type_template_id_0e6bb1e7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Pulse/LiveUpdatingLineChart.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./LiveUpdatingLineChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=template&id=0e6bb1e7&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=template&id=0e6bb1e7& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_0e6bb1e7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./LiveUpdatingLineChart.vue?vue&type=template&id=0e6bb1e7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pulse/LiveUpdatingLineChart.vue?vue&type=template&id=0e6bb1e7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_0e6bb1e7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_0e6bb1e7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Temperature/LineChart.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Temperature/LineChart.js ***!
+  \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -93597,8 +93989,7 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
     };
   },
   watch: {
-    chartData: function chartData() {
-      console.log('mergim'); // this.$data._chart.update()
+    chartData: function chartData() {// this.$data._chart.update()
     }
   },
   mounted: function mounted() {
@@ -93610,18 +94001,18 @@ var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactivePr
 
 /***/ }),
 
-/***/ "./resources/js/components/LiveUpdatingLineChart.vue":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/LiveUpdatingLineChart.vue ***!
-  \***********************************************************/
+/***/ "./resources/js/components/Temperature/LiveUpdatingLineChart.vue":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/Temperature/LiveUpdatingLineChart.vue ***!
+  \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LiveUpdatingLineChart_vue_vue_type_template_id_12beaebd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LiveUpdatingLineChart.vue?vue&type=template&id=12beaebd& */ "./resources/js/components/LiveUpdatingLineChart.vue?vue&type=template&id=12beaebd&");
-/* harmony import */ var _LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LiveUpdatingLineChart.vue?vue&type=script&lang=js& */ "./resources/js/components/LiveUpdatingLineChart.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _LiveUpdatingLineChart_vue_vue_type_template_id_795cc242___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LiveUpdatingLineChart.vue?vue&type=template&id=795cc242& */ "./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=template&id=795cc242&");
+/* harmony import */ var _LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LiveUpdatingLineChart.vue?vue&type=script&lang=js& */ "./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -93631,8 +94022,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _LiveUpdatingLineChart_vue_vue_type_template_id_12beaebd___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _LiveUpdatingLineChart_vue_vue_type_template_id_12beaebd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _LiveUpdatingLineChart_vue_vue_type_template_id_795cc242___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LiveUpdatingLineChart_vue_vue_type_template_id_795cc242___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -93642,38 +94033,169 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/LiveUpdatingLineChart.vue"
+component.options.__file = "resources/js/components/Temperature/LiveUpdatingLineChart.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/LiveUpdatingLineChart.vue?vue&type=script&lang=js&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/LiveUpdatingLineChart.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************/
+/***/ "./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LiveUpdatingLineChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LiveUpdatingLineChart.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./LiveUpdatingLineChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/LiveUpdatingLineChart.vue?vue&type=template&id=12beaebd&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/LiveUpdatingLineChart.vue?vue&type=template&id=12beaebd& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=template&id=795cc242&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=template&id=795cc242& ***!
+  \******************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_12beaebd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LiveUpdatingLineChart.vue?vue&type=template&id=12beaebd& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LiveUpdatingLineChart.vue?vue&type=template&id=12beaebd&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_12beaebd___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_795cc242___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./LiveUpdatingLineChart.vue?vue&type=template&id=795cc242& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Temperature/LiveUpdatingLineChart.vue?vue&type=template&id=795cc242&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_795cc242___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_12beaebd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_795cc242___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/blood-pressure/LineChart.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/blood-pressure/LineChart.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
+
+var reactiveProp = vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["mixins"].reactiveProp;
+/* harmony default export */ __webpack_exports__["default"] = ({
+  "extends": vue_chartjs__WEBPACK_IMPORTED_MODULE_0__["Line"],
+  mixins: [reactiveProp],
+  // props: ['options'],
+  data: function data() {
+    return {
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Te dhenat e gjeneruara ne kohe reale'
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              min: 30,
+              max: 130
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Blood Pressure'
+            },
+            afterTickToLabelConversion: function afterTickToLabelConversion(q) {
+              for (var tick in q.ticks) {
+                q.ticks[tick] += ' mmHg';
+              }
+            }
+          }]
+        }
+      }
+    };
+  },
+  watch: {
+    chartData: function chartData() {// this.$data._chart.update()
+    }
+  },
+  mounted: function mounted() {
+    // this.chartData is created in the mixin.
+    // If you want to pass options please create a local options object
+    this.renderChart(this.chartData, this.options);
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LiveUpdatingLineChart_vue_vue_type_template_id_5129102c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LiveUpdatingLineChart.vue?vue&type=template&id=5129102c& */ "./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=template&id=5129102c&");
+/* harmony import */ var _LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LiveUpdatingLineChart.vue?vue&type=script&lang=js& */ "./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LiveUpdatingLineChart_vue_vue_type_template_id_5129102c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LiveUpdatingLineChart_vue_vue_type_template_id_5129102c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/blood-pressure/LiveUpdatingLineChart.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./LiveUpdatingLineChart.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=template&id=5129102c&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=template&id=5129102c& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_5129102c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./LiveUpdatingLineChart.vue?vue&type=template&id=5129102c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/blood-pressure/LiveUpdatingLineChart.vue?vue&type=template&id=5129102c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_5129102c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpdatingLineChart_vue_vue_type_template_id_5129102c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -77,7 +77,17 @@
          <div class="left-side-bar">
              <div class="container">
                  <div class="chart-container" id="app">
-                     <live-updating-chart></live-updating-chart>
+                     @switch($patient->parameter)
+                         @case('temperature')
+                         <live-updating-temperature-chart></live-updating-temperature-chart>
+                         @break
+                         @case('pulse')
+                         <live-updating-pulse-chart></live-updating-pulse-chart>
+                         @break
+                         @case('blood pressure')
+                         <live-updating-blood-pressure-chart></live-updating-blood-pressure-chart>
+                         @break
+                         @endswitch
                  </div>
              </div>
          </div>

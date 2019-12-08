@@ -18,6 +18,7 @@ class PatientController extends Controller
         if (!$patient){
             $patient = PatientService::getPatientRemote($id);
         }
+        session(['currentPatient' => $id]);
         return view('pages.patient-dashboard')->with('patient', $patient);
     }
 

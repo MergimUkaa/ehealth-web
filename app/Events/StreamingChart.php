@@ -31,6 +31,6 @@ class StreamingChart implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('patient102');
+        return new PrivateChannel('patient.' . $this->data[0]['patient_id']);
     }
 }

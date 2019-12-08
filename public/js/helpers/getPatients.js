@@ -51,61 +51,6 @@ async function getPatients(apiUrl) {
             id: 'mapbox.streets'
         }).addTo(patientMap);
 
-
-        Echo.channel('StreamingData').listen('ReadStreamingData', function (e) {
-            let index;
-            console.log(e);
-            // index =  myJson.findIndex(x => x.sensorId === e.data[0].sensor_id);
-
-            markerLayers.clearLayers();
-
-            myJson.map((patient, i) => {
-                if (!patient.sensorId) {
-                    myJson.splice(i, 1);
-                }
-
-                if (e.data.length < 1 ) {
-                    patient.icon = markerIcon(patient.status);
-                    if (patient.status) {
-                        statusClass = patient.status.split(' ').join('-');
-                        statusText = patient.status;
-                    } else {
-                        statusClass = 'not-measured';
-                        statusText = 'Nuk ka te dhena!';
-                    }
-                    measuredTime = patient.measuredTime ? patient.measuredTime : 'Data nuk ekziston!';
-
-                    var marker = markerWithTooltip(patient);
-
-                    markerLayers.addLayer(marker);
-                    return;
-                }
-
-
-                e.data.map((el) => {
-                    if (el.sensor_id === patient.sensorId) {
-                            patient.icon = markerIcon(patient.status, true);
-                    } else {
-                       patient.icon = markerIcon(patient.status);
-                    }
-                });
-                console.log(patient);
-                if (patient.status) {
-                    statusClass = patient.status.split(' ').join('-');
-                    statusText = patient.status;
-                } else {
-                    statusClass = 'not-measured';
-                    statusText = 'Nuk ka te dhena!';
-                }
-                measuredTime = patient.measuredTime ? patient.measuredTime : 'Data nuk ekziston!';
-
-                var marker = markerWithTooltip(patient);
-
-                markerLayers.addLayer(marker);
-
-            });
-        });
-
         myJson.map((patient, i) => {
             if (!patient.sensorId) {
                 myJson.splice(i, 1);
@@ -126,6 +71,62 @@ async function getPatients(apiUrl) {
 
             markerLayers.addLayer(marker);
 
+        });
+
+        Echo.channel('StreamingData').listen('ReadStreamingData', function (e) {
+            let index;
+            for (let i = 0; i < e.data.length; i++) {
+                console.log(e.data[i].sensor_id);
+            }
+            // index =  myJson.findIndex(x => x.sensorId === e.data[0].sensor_id);
+
+            markerLayers.clearLayers();
+
+            myJson.map((patient, i) => {
+                if (!patient.sensorId) {
+                    myJson.splice(i, 1);
+                }
+                if (e.data.length < 1 ) {
+                    patient.icon = markerIcon(patient.status);
+                    if (patient.status) {
+                        statusClass = patient.status.split(' ').join('-');
+                        statusText = patient.status;
+                    } else {
+                        statusClass = 'not-measured';
+                        statusText = 'Nuk ka te dhena!';
+                    }
+                    measuredTime = patient.measuredTime ? patient.measuredTime : 'Data nuk ekziston!';
+
+                    var marker = markerWithTooltip(patient);
+
+                    markerLayers.addLayer(marker);
+                    return;
+                }
+
+
+
+                for (let i = 0; i<e.data.length; i++) {
+                    if (e.data[i]['sensor_id'] === patient.sensorId) {
+                        console.log(e.data[i]['sensorId']);
+                        patient.icon = markerIcon(patient.status, true);
+                    } else {
+                        patient.icon = markerIcon(patient.status);
+                    }
+                }
+                if (patient.status) {
+                    statusClass = patient.status.split(' ').join('-');
+                    statusText = patient.status;
+                } else {
+                    statusClass = 'not-measured';
+                    statusText = 'Nuk ka te dhena!';
+                }
+                measuredTime = patient.measuredTime ? patient.measuredTime : 'Data nuk ekziston!';
+
+                var marker = markerWithTooltip(patient);
+
+                markerLayers.addLayer(marker);
+
+            });
         });
 
     }

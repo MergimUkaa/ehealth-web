@@ -20,7 +20,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('live-updating-chart', require('./components/LiveUpdatingLineChart.vue').default);
+Vue.component('live-updating-temperature-chart', require('./components/Temperature/LiveUpdatingLineChart.vue').default);
+Vue.component('live-updating-pulse-chart', require('./components/Pulse/LiveUpdatingLineChart.vue').default);
+Vue.component('live-updating-blood-pressure-chart', require('./components/blood-pressure/LiveUpdatingLineChart.vue').default);
 const app = new Vue({
     el: '#app'
 });

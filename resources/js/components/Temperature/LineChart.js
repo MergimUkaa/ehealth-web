@@ -6,7 +6,6 @@ export default {
     mixins: [reactiveProp],
     // props: ['options'],
     data() {
-
         return {
             options: {
                 responsive: true,
@@ -39,7 +38,6 @@ export default {
     },
     watch: {
         chartData () {
-            console.log('mergim');
             // this.$data._chart.update()
         }
     },

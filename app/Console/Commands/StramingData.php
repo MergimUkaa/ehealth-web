@@ -44,7 +44,7 @@ class StramingData extends Command
         $data = array();
         $query = DB::connection('cassandra')
             ->table('processed_data')
-            ->where('created_at','>=', new \Cassandra\Timestamp(Carbon::now()->subMinutes(46)->timestamp))
+            ->where('created_at','>=', new \Cassandra\Timestamp(Carbon::now()->subHours(12)->timestamp))
             ->allowFiltering()
 //            ->limit(2)
             ->get();

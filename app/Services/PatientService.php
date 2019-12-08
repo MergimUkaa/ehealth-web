@@ -18,6 +18,9 @@ class PatientService
             ->join('reparts', 'reparts.id', '=', 'rooms.repart_id')
             ->join('hospitals', 'hospitals.id','=','reparts.hospital_id')
             ->join('cities', 'hospitals.city_id','=','cities.id')
+            ->join('sensors_in_use', 'sensors_in_use.hospitalization_id', '=','hospitalizations.id')
+            ->join('sensors', 'sensors.id', '=', 'sensors_in_use.sensor_id')
+            ->join('parameters', 'parameters.id', '=', 'sensors.parameter_id')
                 ->select(
                     'patients.*',
                     'visits.diagnosis', 'visits.date as visitDate',
@@ -25,16 +28,22 @@ class PatientService
                     'rooms.number as roomNumber',
                     'reparts.name as repartName',
                     'hospitals.name as hospitalName',
-                    'cities.name as hospitalCityName')
+                    'cities.name as hospitalCityName',
+                    'parameters.name as parameter')
              ->find($id);
         return $patient;
     }
     static function getPatientRemote($id) {
         $patientRemote = Patient::with('city')
             ->join('visits', 'visits.patient_id', '=', 'patients.id')
+            ->join('remote_control', 'remote_control.visit_id', '=', 'visits.id')
+            ->join('sensors_in_use', 'sensors_in_use.remote_control_id', '=','remote_control.id')
+            ->join('sensors', 'sensors.id', '=', 'sensors_in_use.sensor_id')
+            ->join('parameters', 'parameters.id', '=', 'sensors.parameter_id')
                 ->select(
                     'patients.*',
-                    'visits.diagnosis', 'visits.date as visitDate')
+                    'visits.diagnosis', 'visits.date as visitDate,',
+                    'parameters.name as parameter')
              ->find($id);
         return $patientRemote;
     }
